@@ -72,7 +72,7 @@ class WeatherCard extends StatelessWidget {
     
     return PhysicalModel(
       color: const Color.fromARGB(0, 255, 0, 0),
-      elevation: 10,
+      elevation: 20,
       shadowColor: Colors.black,
       borderRadius: BorderRadius.circular(28),
       child: Stack(
@@ -88,7 +88,6 @@ class WeatherCard extends StatelessWidget {
             
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Weather icon in CircleAvatar
                 CircleAvatar(
@@ -104,7 +103,6 @@ class WeatherCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         city.name,
@@ -114,9 +112,7 @@ class WeatherCard extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      
-                      // each box size 
-                      const SizedBox(height: 6),
+                    
       
                       Text(
                         'Min ${city.minTemp}°C',
@@ -138,27 +134,18 @@ class WeatherCard extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                const SizedBox(width: 16),
-
                 // Current temperature on the right
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${city.currentTemp}°C',
-                      style: const TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                Text(
+                  '${city.currentTemp}°C',
+                  style: const TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),
           ),
-
           // Decorative oval on the right side
           Positioned(
             right: -40,
@@ -177,22 +164,6 @@ class WeatherCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-void main() {
-  runApp(const WeatherApp());
-}
-
-class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key});
-  
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const WeatherHomePage(),
     );
   }
 }
@@ -227,4 +198,13 @@ class WeatherHomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const WeatherHomePage(),
+    )
+  );
 }
