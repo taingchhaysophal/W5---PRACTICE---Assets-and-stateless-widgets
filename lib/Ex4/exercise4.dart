@@ -75,6 +75,7 @@ class WeatherCard extends StatelessWidget {
       elevation: 20,
       shadowColor: Colors.black,
       borderRadius: BorderRadius.circular(28),
+      //box color
       child: Stack(
         children: [
           // Main gradient background

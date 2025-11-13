@@ -67,7 +67,7 @@ class CustomButton extends StatelessWidget {
   });
 
   // Helper method to get color based on button type
-  Color _getButtonColor() {
+  Color _getColor() {
     switch (buttonType) {
       case ButtonType.primary:
         return Colors.blue;
@@ -78,34 +78,44 @@ class CustomButton extends StatelessWidget {
     }
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
+    final color = _getColor();
+
     return Container(
       decoration: BoxDecoration(
-        color: _getButtonColor(),
-        borderRadius: BorderRadius.circular(40),
+        color: color,
+        borderRadius: BorderRadius.circular(25),
       ),
-
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, //text and button stay at the middle
-        children: _buildButtonContent(),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: iconPosition == IconPosition.left
+            ? [
+                Icon(icon, color: Colors.white, size: 20),
+                SizedBox(width: 10),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ]
+            : [
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Icon(icon, color: Colors.white, size: 20),
+              ],
       ),
     );
-  }
-
-  //build the button content based on icon position
-  List<Widget> _buildButtonContent() {
-    final iconWidget = Icon(icon, size: 30, color: Colors.white);
-    final textWidget = Text(label,style: TextStyle(fontSize: 20, color: Colors.white),);
-    const spacer = SizedBox(width: 20);
-
-    if (iconPosition == IconPosition.left) {
-      // Icon on left
-      return [iconWidget, spacer, textWidget];
-    } else {
-      // Icon on right
-      return [textWidget, spacer, iconWidget];
-    }
   }
 }
